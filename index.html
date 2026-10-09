@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mayank Srivastava</title>
+<meta name="description" content="Full stack developer: NestJS, GraphQL, React, queues and AWS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef0ff;--dot:#d6daf5;--card:#fff;--ink:#111;--muted:#444;--chip:#e2e6ff;--yellow:#c6f432;--green:#5fd3a0;--red:#7c5cff;--shadow:#111}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12122a;--dot:#1e1e3d;--card:#1b1b38;--ink:#f1f2ff;--muted:#b9bce0;--chip:#2a2a52;--shadow:#000}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:18px 18px;color:var(--ink);font:14px/1.7 "JetBrains Mono",monospace}
+a{color:inherit}
+h1,h2,h3{font-family:"Bagel Fat One",sans-serif;font-weight:400;margin:0;line-height:1.15}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:20px;padding:12px 24px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:18px}
+.logo i{width:34px;height:34px;background:var(--red);border:2px solid var(--ink);border-radius:9px;display:grid;place-items:center;font-style:normal;color:#fff;font-size:14px;box-shadow:2px 2px 0 var(--shadow)}
+.tag{border:1.5px solid var(--ink);border-radius:8px;padding:2px 8px;font-size:11px;background:var(--chip);text-transform:uppercase;letter-spacing:.03em}
+.links{display:flex;gap:6px;flex-wrap:wrap}
+.links a{text-decoration:none;padding:7px 16px;border-radius:99px;border:2px solid transparent;font-size:13px}
+.links a:hover,.links a.on{background:var(--yellow);color:#111;border-color:var(--ink);box-shadow:2px 2px 0 var(--shadow)}
+.sp{flex:1}
+.pill{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:99px;padding:5px 14px;background:var(--card);font-weight:700;font-size:12px;text-decoration:none;box-shadow:2px 2px 0 var(--shadow)}
+.pill.y{background:var(--yellow);color:#111}
+a.pill:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--shadow)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+main{max-width:1060px;margin:0 auto;padding:0 16px 40px}
+section{padding-top:48px}
+.head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.head h1{font-size:clamp(34px,7vw,56px)}
+.head h2{font-size:clamp(28px,5vw,40px)}
+.badge{background:var(--yellow);color:#111;border:2px solid var(--ink);border-radius:99px;padding:3px 14px;font-weight:700;font-size:13px;box-shadow:2px 2px 0 var(--shadow)}
+.status{margin-left:auto;border:1.5px solid #bbb;border-radius:99px;padding:5px 14px;font-size:12px;display:flex;align-items:center;gap:8px;background:var(--card)}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:24px;box-shadow:5px 5px 0 var(--shadow);transition:transform .12s,box-shadow .12s}
+.card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--shadow)}
+.card h3{font-size:clamp(20px,3vw,28px)}
+.big h3{font-size:clamp(22px,3.6vw,34px);margin:14px 0 16px}
+hr{border:0;border-top:1px solid #bbb;margin:16px 0}
+p{margin:0;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chips span{border:1.5px solid var(--ink);border-radius:8px;padding:1px 9px;font-size:12px;background:var(--chip)}
+.row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.when{font-size:12px;color:var(--muted)}
+ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+li{margin:4px 0}
+.stack{display:grid;gap:22px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.letter{width:28px;height:28px;border-radius:9px;background:var(--yellow);color:#111;border:2px solid var(--ink);display:grid;place-items:center;font-weight:700;font-size:12px;box-shadow:2px 2px 0 var(--shadow);margin-bottom:14px}
+.proj{display:flex;flex-direction:column}
+.shot.contain{object-fit:contain;background:#fff;padding:8px}
+.shot{width:100%;aspect-ratio:16/9;object-fit:cover;border:2px solid var(--ink);border-radius:10px;margin-bottom:16px;background:var(--chip)}
+.proj p{flex:1;font-size:13px}
+.proj .pill{align-self:flex-start;margin-top:16px}
+.skill{display:grid;grid-template-columns:130px 1fr;gap:6px 16px;align-items:start;padding:10px 0;border-bottom:1px dashed #bbb}
+.skill:last-child{border:0}
+.skill b{padding-top:2px}
+.skill .chips{margin:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.stat{font-family:"Bagel Fat One",sans-serif;font-size:clamp(44px,8vw,72px);line-height:1}
+footer{text-align:center;padding:40px 16px 60px;border-top:2px solid var(--ink);margin-top:50px}
+footer p{margin-top:14px;font-size:12px}
+@media(max-width:760px){.grid,.two{grid-template-columns:1fr}.skill{grid-template-columns:1fr}.status{margin-left:0}nav{padding:10px 16px}.links{order:3;width:100%}.sp{display:none}}
+.social{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-top:22px}
+.social a{display:flex;align-items:center;gap:12px;border:2px solid var(--ink);border-radius:12px;padding:10px 14px;background:var(--card);text-decoration:none;font-weight:700;box-shadow:3px 3px 0 var(--shadow);transition:transform .12s,box-shadow .12s;min-width:0}
+.social a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--shadow);background:var(--yellow);color:#111}
+.social img,.social svg{width:22px;height:22px;flex:none}
+.social span{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.social small{font-weight:400;font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.social a:hover small{color:#222}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .social img[src$="/111"]{filter:invert(1)}.social a:hover img[src$="/111"]{filter:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#top"><i>&gt;_</i>mayank.dev</a>
+  <span class="tag">portfolio</span>
+  <div class="links">
+    <a href="#about" class="on">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#achievements">Achievements</a>
+  </div>
+  <span class="sp"></span>
+  <a class="pill y" href="mailto:mayansrivas@gmail.com">Hire me</a>
+</nav>
+
+<main id="top">
+<section id="about">
+  <div class="head">
+    <h1>MAYANK SRIVASTAVA</h1><span class="badge">Full Stack Dev</span>  </div>
+  <div class="card big">
+    <span class="tag">Currently</span>
+    <h3>Building fintech backends with NestJS, GraphQL &amp; job queues at Ambak.</h3>
+    <hr>
+    <p>I ship microservices, background-processing pipelines and serverless workers, and I like real-time systems: WebRTC, sockets, queues. Also a LeetCode contest regular.</p>
+    <div class="social">
+      <a href="https://github.com/srivasmayank" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/github/111" alt=""><span>GitHub<small>@srivasmayank</small></span></a>
+      <a href="https://www.linkedin.com/in/mayank-srivastava-6b2070252/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22"><rect width="24" height="24" rx="4" fill="#0A66C2"/><text x="12" y="17" font-family="Arial" font-weight="700" font-size="13" text-anchor="middle" fill="#fff">in</text></svg><span>LinkedIn<small>mayank-srivastava</small></span></a>
+      <a href="https://leetcode.com/u/mayavi25/" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/leetcode/FFA116" alt=""><span>LeetCode<small>mayavi25 · 1856</small></span></a>
+      <a href="mailto:mayansrivas@gmail.com"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt=""><span>Email<small>mayansrivas@gmail.com</small></span></a>
+      <a href="tel:+919161215247"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Phone<small>+91-9161215247</small></span></a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="head"><h2>EXPERIENCE</h2><span class="badge">2 roles</span></div>
+  <div class="stack">
+    <div class="card">
+      <div class="row"><h3>Ambak Fintech Pvt. Ltd.</h3><span class="when">Apr 2026 – Oct 2026</span></div>
+      <p style="margin-top:4px"><b>Full Stack Developer Intern</b></p>
+      <ul>
+        <li>Integrated <b>Razorpay APIs</b> for bank account verification and KYC workflows.</li>
+        <li>Developed backend services using <b>NestJS</b> with a microservices architecture and <b>GraphQL</b> APIs.</li>
+        <li>Implemented asynchronous job queues using <b>BullMQ, Redis, and RabbitMQ</b> for scalable background processing.</li>
+        <li>Integrated <b>Ameyo Dialer</b> for auto-dial queue management and dynamic number rotation.</li>
+        <li>Developed a serverless PDF processing service using <b>AWS Lambda</b> for automated, scalable document processing.</li>
+      </ul>
+      <div class="chips"><span>NestJS</span><span>GraphQL</span><span>BullMQ</span><span>Redis</span><span>RabbitMQ</span><span>AWS Lambda</span></div>
+    </div>
+    <div class="card">
+      <div class="row"><h3>Farmershop Tech India Pvt. Ltd.</h3><span class="when">Jan 2025 – Feb 2025</span></div>
+      <p style="margin-top:4px"><b>Full Stack Developer Intern</b></p>
+      <ul>
+        <li>Revamped responsive UI using <b>React.js and Tailwind CSS</b>, integrating frontend modules with backend REST APIs for improved application stability.</li>
+        <li>Built and integrated <b>REST APIs</b> within a microservices-based backend using <b>Node.js and Express.js</b>, while optimizing rendering with <b>React.lazy and Suspense</b> to reduce initial page load.</li>
+      </ul>
+      <div class="chips"><span>React</span><span>Tailwind</span><span>Node.js</span><span>Express</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="head"><h2>PROJECTS</h2><span class="badge">3 shipped</span></div>
+  <div class="grid">
+    <div class="card proj">
+      <img class="shot" src="images/flatfinity.jpg" alt="Flatfinity screenshot" loading="lazy"><div class="letter">a</div><h3>Flatfinity</h3>
+      <div class="chips"><span>Phaser.js</span><span>WebRTC</span><span>Socket.io</span></div>
+      <hr>
+      <p>Browser-based multiplayer 2D metaverse with synchronized player movement and real-time communication. Low-latency peer-to-peer voice over WebRTC with interactive sprite-based gameplay.</p>
+      <a class="pill" href="https://github.com/srivasmayank/FlatFinity" target="_blank" rel="noopener">Code ↗</a>
+    </div>
+    <div class="card proj">
+      <img class="shot contain" src="images/quickchat.png" alt="QuickChat" loading="lazy"><div class="letter">b</div><h3>QuickChat</h3>
+      <div class="chips"><span>React</span><span>Node.js</span><span>Socket.io</span><span>Redis</span><span>Docker</span><span>K8s</span></div>
+      <hr>
+      <p>Real-time messaging and group chat with Cloudinary media uploads and ZEGOCLOUD video calling. Redis-backed rate limiting, containerized with Docker for Kubernetes deployment.</p>
+      <a class="pill" href="https://github.com/abhiiizzz/Quick-Chat-App" target="_blank" rel="noopener">Code ↗</a>
+    </div>
+    <div class="card proj">
+      <img class="shot contain" src="images/bitbuccky.png" alt="Bitbuccky" loading="lazy"><div class="letter">c</div><h3>Bitbuccky</h3>
+      <div class="chips"><span>Docker</span><span>Redis</span><span>AWS S3</span><span>GitHub Actions</span><span>Node.js</span></div>
+      <hr>
+      <p>Automated CI/CD platform that clones, builds, tests and deploys GitHub repos to AWS S3. Redis-based build logs and deployment monitoring with custom reverse proxy support.</p>
+      <a class="pill" href="https://github.com/MaYnk0018/bitbuccky" target="_blank" rel="noopener">Code ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="head"><h2>SKILLS</h2><span class="badge">stack</span></div>
+  <div class="card">
+    <div class="skill"><b>Languages</b><div class="chips"><span>JavaScript (ES6+)</span><span>TypeScript</span><span>C++</span><span>SQL</span></div></div>
+    <div class="skill"><b>Frontend</b><div class="chips"><span>React.js</span><span>Next.js</span><span>Tailwind CSS</span><span>HTML</span><span>CSS</span></div></div>
+    <div class="skill"><b>Backend</b><div class="chips"><span>Node.js</span><span>Express.js</span><span>NestJS</span><span>REST APIs</span><span>GraphQL</span><span>Socket.io</span></div></div>
+    <div class="skill"><b>Databases</b><div class="chips"><span>SQL</span><span>MongoDB</span><span>Redis</span></div></div>
+    <div class="skill"><b>Cloud</b><div class="chips"><span>AWS EC2</span><span>AWS S3</span><span>AWS Lambda</span></div></div>
+    <div class="skill"><b>Queues</b><div class="chips"><span>RabbitMQ</span><span>BullMQ</span></div></div>
+    <div class="skill"><b>Tools</b><div class="chips"><span>Git</span><span>GitHub</span></div></div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="head"><h2>ACHIEVEMENTS</h2></div>
+  <div class="two">
+    <div class="card"><span class="tag">LeetCode</span><div class="stat" style="margin:14px 0 8px">250+</div><p>problems solved across data structures and algorithms.</p></div>
+    <div class="card"><span class="tag">Contest rating</span><div class="stat" style="margin:14px 0 8px">1856</div><p><a href="https://leetcode.com/u/mayavi25/" target="_blank" rel="noopener">View LeetCode profile ↗</a></p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <a class="pill y" href="Resume.pdf" download>Download PDF resume ↓</a>
+  <p>© 2026 Mayank Srivastava</p>
+</footer>
+
+<script>
+// highlight active nav link on scroll
+const links=[...document.querySelectorAll('.links a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.hash==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section').forEach(s=>io.observe(s));
+if(!location.hash)links.forEach(l=>l.classList.toggle('on',l.hash==='#about'));
+</script>
+</body>
+</html>
